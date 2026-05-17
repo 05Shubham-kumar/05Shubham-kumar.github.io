@@ -1,0 +1,33 @@
+const SKILLS = [
+  { name: "Python", icon: "ri-code-s-slash-line", color: "#3776ab", cat: "Core" },
+  { name: "pandas", icon: "ri-table-line", color: "#150458", cat: "Core" },
+  { name: "NumPy", icon: "ri-bar-chart-grouped-line", color: "#013243", cat: "Core" },
+  { name: "matplotlib", icon: "ri-line-chart-line", color: "#11557c", cat: "Core" },
+  { name: "SQL", icon: "ri-database-2-line", color: "#336791", cat: "Core" },
+  { name: "Machine Learning", icon: "ri-robot-2-line", color: "#6366f1", cat: "ML" },
+  { name: "Deep Learning", icon: "ri-brain-line", color: "#8b5cf6", cat: "ML" },
+  { name: "Data Visualization", icon: "ri-pie-chart-2-line", color: "#06b6d4", cat: "ML" },
+  { name: "EDA", icon: "ri-search-eye-line", color: "#10b981", cat: "ML" },
+  { name: "Feature Engineering", icon: "ri-settings-3-line", color: "#f59e0b", cat: "ML" },
+  { name: "Logistic Regression", icon: "ri-organization-chart", color: "#6366f1", cat: "Algorithms" },
+  { name: "Random Forest", icon: "ri-node-tree", color: "#22c55e", cat: "Algorithms" },
+  { name: "SVM", icon: "ri-separator", color: "#ef4444", cat: "Algorithms" },
+  { name: "XGBoost", icon: "ri-rocket-line", color: "#f97316", cat: "Algorithms" },
+  { name: "KMeans", icon: "ri-focus-3-line", color: "#8b5cf6", cat: "Algorithms" },
+  { name: "PCA", icon: "ri-compress-line", color: "#06b6d4", cat: "Algorithms" },
+  { name: "Cross Validation", icon: "ri-refresh-line", color: "#10b981", cat: "Algorithms" },
+  { name: "GridSearchCV", icon: "ri-search-2-line", color: "#f59e0b", cat: "Algorithms" },
+  { name: "Streamlit", icon: "ri-layout-line", color: "#ff4b4b", cat: "Tools" },
+  { name: "GitHub", icon: "ri-github-line", color: "#333", cat: "Tools" },
+  { name: "Model Deployment", icon: "ri-cloud-line", color: "#6366f1", cat: "Tools" },
+  { name: "NLP", icon: "ri-chat-voice-line", color: "#a855f7", cat: "ML" },
+];
+
+const SERVICES = [
+  { title: "Data Analysis", icon: "ri-bar-chart-2-line", desc: "End-to-end EDA, statistical analysis, and actionable insights from raw datasets.", color: "#6366f1" },
+  { title: "ML Model Building", icon: "ri-robot-2-line", desc: "Custom ML models tuned for accuracy — classification, regression, and clustering.", color: "#8b5cf6" },
+  { title: "Deep Learning Projects", icon: "ri-brain-line", desc: "Neural network models for image, text, and tabular data using Python.", color: "#06b6d4" },
+  { title: "Dashboard Creation", icon: "ri-dashboard-line", desc: "Interactive, beautiful dashboards to visualize KPIs and business metrics.", color: "#10b981" },
+  { title: "Python Automation", icon: "ri-terminal-line", desc: "Automate repetitive data tasks, web scraping, file handling, and workflows.", color: "#f59e0b" },
+  { title: "SQL Data Analysis", icon: "ri-database-2-line", desc: "Complex SQL queries, database design, and data extraction for business decisions.", color: "#336791" },
+];
