@@ -154,4 +154,211 @@ function initAboutScene() {
 window.addEventListener('DOMContentLoaded', () => {
   initHeroScene();
   initAboutScene();
+  initSkillsScene();
+  initProjectsScene();
 });
+
+// ── Three.js Skills Section Background ──────────────────────────────────
+function initSkillsScene() {
+  const canvas = document.getElementById('skills-canvas');
+  if (!canvas || typeof THREE === 'undefined') return;
+
+  const section = canvas.parentElement;
+  const W = section.offsetWidth || window.innerWidth;
+  const H = section.offsetHeight || 600;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
+  renderer.setSize(W, H);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 200);
+  camera.position.z = 30;
+
+  scene.add(new THREE.AmbientLight(0x6366f1, 0.3));
+  scene.add(Object.assign(new THREE.PointLight(0x06b6d4, 2, 60), { position: new THREE.Vector3(10, 10, 10) }));
+
+  // Floating icon-like shapes — representing different skill categories
+  const geos = [
+    new THREE.IcosahedronGeometry(0.6, 0),   // ML
+    new THREE.OctahedronGeometry(0.5, 0),    // Algorithms
+    new THREE.TorusGeometry(0.4, 0.15, 6, 12), // Tools
+    new THREE.BoxGeometry(0.7, 0.7, 0.7),    // Core
+    new THREE.TetrahedronGeometry(0.55, 0),  // DL
+  ];
+  const cols = [0x6366f1, 0x8b5cf6, 0x06b6d4, 0xa855f7, 0x10b981, 0x3b82f6, 0xf59e0b];
+  const floaters = [];
+
+  for (let i = 0; i < 38; i++) {
+    const geo = geos[i % geos.length];
+    const col = cols[i % cols.length];
+    const isWire = i % 3 === 0;
+    const mat = isWire
+      ? new THREE.MeshBasicMaterial({ color: col, wireframe: true, transparent: true, opacity: 0.25 })
+      : new THREE.MeshStandardMaterial({ color: col, transparent: true, opacity: 0.18, roughness: 0.4, metalness: 0.7 });
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.position.set(
+      (Math.random() - 0.5) * 50,
+      (Math.random() - 0.5) * 30,
+      (Math.random() - 0.5) * 15
+    );
+    mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+    const s = 0.5 + Math.random() * 1.2;
+    mesh.scale.setScalar(s);
+    scene.add(mesh);
+    floaters.push({
+      mesh,
+      rotX: (Math.random() - 0.5) * 0.008,
+      rotY: (Math.random() - 0.5) * 0.01,
+      floatY: Math.random() * Math.PI * 2,
+      floatSpeed: 0.3 + Math.random() * 0.4,
+    });
+  }
+
+  // Background particle dust
+  const pCount = 200;
+  const pPos = new Float32Array(pCount * 3);
+  for (let i = 0; i < pCount; i++) {
+    pPos[i * 3]     = (Math.random() - 0.5) * 80;
+    pPos[i * 3 + 1] = (Math.random() - 0.5) * 50;
+    pPos[i * 3 + 2] = (Math.random() - 0.5) * 20;
+  }
+  const pGeo = new THREE.BufferGeometry();
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  const particles = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x6366f1, size: 0.18, transparent: true, opacity: 0.4 }));
+  scene.add(particles);
+
+  let t = 0;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) loop(); });
+  }, { threshold: 0.1 });
+  obs.observe(section);
+
+  let running = false;
+  function loop() {
+    if (running) return; running = true;
+    (function animate() {
+      requestAnimationFrame(animate);
+      t += 0.008;
+      floaters.forEach(f => {
+        f.mesh.rotation.x += f.rotX;
+        f.mesh.rotation.y += f.rotY;
+        f.mesh.position.y += Math.sin(t * f.floatSpeed + f.floatY) * 0.005;
+      });
+      particles.rotation.y += 0.0005;
+      renderer.render(scene, camera);
+    })();
+  }
+
+  window.addEventListener('resize', () => {
+    const nW = section.offsetWidth, nH = section.offsetHeight;
+    camera.aspect = nW / nH; camera.updateProjectionMatrix();
+    renderer.setSize(nW, nH);
+  });
+}
+
+// ── Three.js Projects Section Background ────────────────────────────────
+function initProjectsScene() {
+  const canvas = document.getElementById('projects-canvas');
+  if (!canvas || typeof THREE === 'undefined') return;
+
+  const section = canvas.parentElement;
+  const W = section.offsetWidth || window.innerWidth;
+  const H = section.offsetHeight || 700;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
+  renderer.setSize(W, H);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, W / H, 0.1, 200);
+  camera.position.z = 28;
+
+  scene.add(new THREE.AmbientLight(0x8b5cf6, 0.25));
+  scene.add(Object.assign(new THREE.PointLight(0x6366f1, 2.5, 70), { position: new THREE.Vector3(-15, 10, 10) }));
+  scene.add(Object.assign(new THREE.PointLight(0x06b6d4, 1.5, 60), { position: new THREE.Vector3(15, -10, 5) }));
+
+  // Neural network graph — nodes + edges
+  const nodeCount = 24;
+  const nodePositions = [];
+  const nodeMeshes = [];
+  const nodeMat = new THREE.MeshStandardMaterial({ color: 0x6366f1, roughness: 0.3, metalness: 0.8, transparent: true, opacity: 0.55 });
+
+  for (let i = 0; i < nodeCount; i++) {
+    const pos = new THREE.Vector3(
+      (Math.random() - 0.5) * 42,
+      (Math.random() - 0.5) * 26,
+      (Math.random() - 0.5) * 8
+    );
+    nodePositions.push(pos);
+    const m = new THREE.Mesh(new THREE.SphereGeometry(0.28, 10, 10), nodeMat.clone());
+    m.position.copy(pos);
+    scene.add(m);
+    nodeMeshes.push(m);
+  }
+
+  // Connect nearby nodes with glowing lines
+  const lineMat = new THREE.LineBasicMaterial({ color: 0x6366f1, transparent: true, opacity: 0.12 });
+  for (let a = 0; a < nodeCount; a++) {
+    for (let b = a + 1; b < nodeCount; b++) {
+      if (nodePositions[a].distanceTo(nodePositions[b]) < 14) {
+        const lGeo = new THREE.BufferGeometry().setFromPoints([nodePositions[a], nodePositions[b]]);
+        scene.add(new THREE.Line(lGeo, lineMat));
+      }
+    }
+  }
+
+  // Data flow pulses — small dots that travel along edges
+  const pulseGeo = new THREE.SphereGeometry(0.12, 6, 6);
+  const pulseMat = new THREE.MeshStandardMaterial({ color: 0x06b6d4, emissive: 0x06b6d4, emissiveIntensity: 1, transparent: true, opacity: 0.9 });
+  const pulses = [];
+  for (let i = 0; i < 10; i++) {
+    const pulse = new THREE.Mesh(pulseGeo, pulseMat.clone());
+    scene.add(pulse);
+    const a = Math.floor(Math.random() * nodeCount);
+    const b = Math.floor(Math.random() * nodeCount);
+    pulses.push({ mesh: pulse, from: nodePositions[a], to: nodePositions[b], t: Math.random(), speed: 0.003 + Math.random() * 0.004 });
+  }
+
+  // Star-field background
+  const starCount = 300;
+  const starPos = new Float32Array(starCount * 3);
+  for (let i = 0; i < starCount; i++) {
+    starPos[i * 3]     = (Math.random() - 0.5) * 100;
+    starPos[i * 3 + 1] = (Math.random() - 0.5) * 80;
+    starPos[i * 3 + 2] = -10 - Math.random() * 20;
+  }
+  const sGeo = new THREE.BufferGeometry();
+  sGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+  scene.add(new THREE.Points(sGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.12, transparent: true, opacity: 0.3 })));
+
+  let t = 0;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) loop(); });
+  }, { threshold: 0.1 });
+  obs.observe(section);
+
+  let running = false;
+  function loop() {
+    if (running) return; running = true;
+    (function animate() {
+      requestAnimationFrame(animate);
+      t += 0.008;
+      nodeMeshes.forEach((m, i) => {
+        m.position.y += Math.sin(t * 0.4 + i) * 0.003;
+      });
+      pulses.forEach(p => {
+        p.t += p.speed;
+        if (p.t > 1) { p.t = 0; }
+        p.mesh.position.lerpVectors(p.from, p.to, p.t);
+      });
+      renderer.render(scene, camera);
+    })();
+  }
+
+  window.addEventListener('resize', () => {
+    const nW = section.offsetWidth, nH = section.offsetHeight;
+    camera.aspect = nW / nH; camera.updateProjectionMatrix();
+    renderer.setSize(nW, nH);
+  });
+}

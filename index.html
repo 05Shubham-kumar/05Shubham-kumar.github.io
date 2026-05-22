@@ -33,6 +33,12 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- ── Page Transition Overlay ── -->
+  <div id="pageTransition" class="page-transition">
+    <div class="pt-bar pt-bar-1"></div>
+    <div class="pt-bar pt-bar-2"></div>
+    <div class="pt-bar pt-bar-3"></div>
+  </div>
 
   <!-- ==================== NAVBAR ==================== -->
   <nav id="navbar" class="navbar">
@@ -81,8 +87,8 @@
         <a href="#projects" class="btn btn-secondary">
           <i class="ri-code-box-line"></i> View Projects
         </a>
-        <a href="#contact" class="btn btn-ghost">
-          <i class="ri-mail-send-line"></i> Contact Me
+        <a href="#services" class="btn btn-ghost">
+          <i class="ri-layout-grid-line"></i> Services
         </a>
       </div>
       <div class="hero-stats reveal-up">
@@ -150,6 +156,7 @@
           </div>
           <div class="about-actions">
             <a href="#contact" class="btn btn-primary"><i class="ri-mail-line"></i> Get In Touch</a>
+            <a href="https://www.linkedin.com/in/shubham-kumar-05s2005/" target="_blank" rel="noopener" class="btn btn-secondary"><i class="ri-linkedin-box-fill"></i> LinkedIn</a>
             <a href="https://github.com/05Shubham-singh" target="_blank" rel="noopener" class="btn btn-ghost"><i class="ri-github-line"></i> GitHub</a>
           </div>
         </div>
@@ -159,6 +166,7 @@
 
   <!-- ==================== SKILLS ==================== -->
   <section id="skills" class="section skills-section">
+    <canvas id="skills-canvas" class="section-bg-canvas"></canvas>
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Technical Arsenal</span>
@@ -171,6 +179,7 @@
 
   <!-- ==================== PROJECTS ==================== -->
   <section id="projects" class="section projects-section">
+    <canvas id="projects-canvas" class="section-bg-canvas"></canvas>
     <div class="container">
       <div class="section-header">
         <span class="section-tag">My Work</span>
@@ -229,11 +238,52 @@
             </a>
           </div>
         </div>
-        <div class="project-coming-soon">
-          <div class="coming-card">
-            <i class="ri-add-circle-line"></i>
-            <h4>More Projects Coming Soon</h4>
-            <p>Currently working on new ML & AI projects. Stay tuned!</p>
+        <div class="project-card-main" id="projectCard2">
+          <div class="project-glow"></div>
+          <div class="project-header">
+            <div class="project-icon-wrap">
+              <i class="ri-robot-2-line"></i>
+            </div>
+            <div class="project-meta">
+              <span class="project-category">AI AGENT · CODE REVIEW AI</span>
+              <div class="project-status"><span class="status-dot"></span> Live &amp; Deployed</div>
+            </div>
+          </div>
+          <h3 class="project-title">AI Code Review Agent</h3>
+          <p class="project-subtitle">using Python, Streamlit, AST Parsing, GitPython, and Gemini API</p>
+          <p class="project-desc">
+            Built an end-to-end AI-powered code review system that analyzes public GitHub repositories and generates structured review comments. The application clones a repository using GitPython, detects Python files, parses code with Python AST, extracts functions, classes, and imports, and sends selected code chunks to Gemini for review. It provides feedback with severity, category, confidence score, and verification status — helping developers identify bugs, code quality issues, security concerns, and improvement areas. Deployed as an interactive Streamlit web app for real-time repository review.
+          </p>
+          <div class="project-tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Streamlit</span>
+            <span class="tech-tag">GitPython</span>
+            <span class="tech-tag">AST</span>
+            <span class="tech-tag">Gemini API</span>
+            <span class="tech-tag">Static Analysis</span>
+            <span class="tech-tag">AI Agent</span>
+          </div>
+          <div class="project-metrics">
+            <div class="metric">
+              <span class="metric-value gradient-text">AI</span>
+              <span class="metric-label">Powered Code Review</span>
+            </div>
+            <div class="metric">
+              <span class="metric-value gradient-text">Real-time</span>
+              <span class="metric-label">Repo Analysis</span>
+            </div>
+            <div class="metric">
+              <span class="metric-value gradient-text">5+</span>
+              <span class="metric-label">Review Categories</span>
+            </div>
+          </div>
+          <div class="project-buttons">
+            <a href="https://ai-code-review-agent-s.streamlit.app/" target="_blank" rel="noopener" class="btn btn-primary">
+              <i class="ri-external-link-line"></i> Live App
+            </a>
+            <a href="https://github.com/05Shubham-singh/AI-Code-Review-Agent" target="_blank" rel="noopener" class="btn btn-secondary">
+              <i class="ri-github-line"></i> GitHub Repo
+            </a>
           </div>
         </div>
       </div>

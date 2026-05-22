@@ -30,4 +30,5 @@ const SERVICES = [
   { title: "Dashboard Creation", icon: "ri-dashboard-line", desc: "Interactive, beautiful dashboards to visualize KPIs and business metrics.", color: "#10b981" },
   { title: "Python Automation", icon: "ri-terminal-line", desc: "Automate repetitive data tasks, web scraping, file handling, and workflows.", color: "#f59e0b" },
   { title: "SQL Data Analysis", icon: "ri-database-2-line", desc: "Complex SQL queries, database design, and data extraction for business decisions.", color: "#336791" },
+  { title: "✦ 3D Landing Website", icon: "ri-box-3-line", desc: "Immersive, high-performance 3D landing pages with WebGL, Three.js animations, and cinematic scroll experiences that captivate visitors from the first second.", color: "#a855f7" },
 ];
