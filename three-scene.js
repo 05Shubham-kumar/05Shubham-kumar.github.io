@@ -176,7 +176,9 @@ function initSkillsScene() {
   camera.position.z = 30;
 
   scene.add(new THREE.AmbientLight(0x6366f1, 0.3));
-  scene.add(Object.assign(new THREE.PointLight(0x06b6d4, 2, 60), { position: new THREE.Vector3(10, 10, 10) }));
+  const plSkills = new THREE.PointLight(0x06b6d4, 2, 60);
+  plSkills.position.set(10, 10, 10);
+  scene.add(plSkills);
 
   // Floating icon-like shapes — representing different skill categories
   const geos = [
@@ -275,8 +277,12 @@ function initProjectsScene() {
   camera.position.z = 28;
 
   scene.add(new THREE.AmbientLight(0x8b5cf6, 0.25));
-  scene.add(Object.assign(new THREE.PointLight(0x6366f1, 2.5, 70), { position: new THREE.Vector3(-15, 10, 10) }));
-  scene.add(Object.assign(new THREE.PointLight(0x06b6d4, 1.5, 60), { position: new THREE.Vector3(15, -10, 5) }));
+  const plProj1 = new THREE.PointLight(0x6366f1, 2.5, 70);
+  plProj1.position.set(-15, 10, 10);
+  scene.add(plProj1);
+  const plProj2 = new THREE.PointLight(0x06b6d4, 1.5, 60);
+  plProj2.position.set(15, -10, 5);
+  scene.add(plProj2);
 
   // Neural network graph — nodes + edges
   const nodeCount = 24;

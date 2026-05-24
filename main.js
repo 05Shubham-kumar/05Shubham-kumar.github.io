@@ -96,10 +96,64 @@ function initNavbar() {
     });
   });
 
+  const transitionOverlay = document.getElementById('pageTransition');
+
+  // Page Load Entrance Transition: slide out the bars to reveal page
+  if (transitionOverlay) {
+    document.body.classList.add('page-transitioning');
+    const bars = transitionOverlay.querySelectorAll('.pt-bar');
+    // Set initial scale to cover screen
+    bars.forEach(bar => {
+      bar.style.transform = 'scaleX(1)';
+      bar.style.transformOrigin = 'right';
+    });
+    // Animate out
+    setTimeout(() => {
+      bars.forEach(bar => {
+        bar.style.transform = 'scaleX(0)';
+      });
+      setTimeout(() => {
+        transitionOverlay.classList.remove('active');
+        document.body.classList.remove('page-transitioning');
+      }, 600);
+    }, 150);
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
-      const target = document.querySelector(anchor.getAttribute('href'));
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      const href = anchor.getAttribute('href');
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        if (transitionOverlay) {
+          transitionOverlay.classList.add('active');
+          document.body.classList.add('page-transitioning');
+          const bars = transitionOverlay.querySelectorAll('.pt-bar');
+          
+          // Slide in
+          bars.forEach(bar => {
+            bar.style.transformOrigin = 'left';
+            bar.style.transform = 'scaleX(1)';
+          });
+          
+          setTimeout(() => {
+            target.scrollIntoView({ behavior: 'auto' });
+            
+            // Slide out
+            bars.forEach(bar => {
+              bar.style.transformOrigin = 'right';
+              bar.style.transform = 'scaleX(0)';
+            });
+            
+            setTimeout(() => {
+              transitionOverlay.classList.remove('active');
+              document.body.classList.remove('page-transitioning');
+            }, 600);
+          }, 550);
+        } else {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     });
   });
 }

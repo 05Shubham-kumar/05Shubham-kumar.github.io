@@ -240,3 +240,42 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:h
   .services-grid{grid-template-columns:1fr}
   .svc-3d-canvas{display:none}
 }
+
+/* ── 3D PAGE TRANSITION EFFECTS ── */
+#appWrapper {
+  transition: transform 0.7s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.7s ease, filter 0.7s ease;
+  transform-origin: center center;
+  perspective: 1200px;
+  will-change: transform, opacity;
+}
+
+body.page-transitioning #appWrapper {
+  transform: perspective(1200px) translateZ(-160px) rotateX(6deg) translateY(-20px);
+  opacity: 0.6;
+  filter: blur(1.5px);
+}
+
+/* ── PAGE TRANSITION OVERLAY ── */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+.pt-bar {
+  flex: 1;
+  background: var(--bg);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.pt-bar-1 { transition-delay: 0s; background: linear-gradient(90deg, var(--primary), var(--violet)); }
+.pt-bar-2 { transition-delay: 0.08s; background: linear-gradient(90deg, var(--violet), var(--accent)); }
+.pt-bar-3 { transition-delay: 0.16s; background: linear-gradient(90deg, var(--accent), var(--primary)); }
+
+.page-transition.active .pt-bar {
+  transform: scaleX(1);
+}
+
