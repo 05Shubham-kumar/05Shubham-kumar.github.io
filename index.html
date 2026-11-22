@@ -3,325 +3,181 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Shubham Kumar - Data Science & Machine Learning Portfolio. Final-year BCA student at IGNOU, Delhi. Skilled in Python, ML, Deep Learning, Streamlit & data visualization." />
-  <meta name="keywords" content="Shubham Kumar, Data Science, Machine Learning, Python, Portfolio, IGNOU, Delhi, Deep Learning, Streamlit" />
+  <meta name="description" content="Shubham Kumar | Data Science & Machine Learning Portfolio. Terminal-style command center for data-driven solutions." />
   <meta name="author" content="Shubham Kumar" />
-  <meta property="og:title" content="Shubham Kumar | Data Science & ML Portfolio" />
-  <meta property="og:description" content="Building intelligent, data-driven solutions using Machine Learning, Deep Learning, Python, and interactive web apps." />
+  <meta property="og:title" content="Shubham Kumar | Data Science & ML Terminal" />
+  <meta property="og:description" content="Final-year BCA student at IGNOU, Delhi. Skilled in Python, ML, Deep Learning, Streamlit & data visualization." />
   <meta property="og:type" content="website" />
-  <title>Shubham Kumar | Data Science & Machine Learning Portfolio</title>
+  <title>shubham@portfolio:~$ Data Science & Machine Learning</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet" />
 
-  <!-- Three.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-  <!-- tsParticles -->
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-
-  <!-- GSAP for animations -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-  <!-- Remix Icons -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
 
-  <!-- Styles -->
-  <style>
-    body {
-      background: #0a0a0f !important;
-      color: #e2e8f0;
-    }
-  </style>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a08'/%3E%3Ctext x='50' y='70' font-family='monospace' font-size='60' text-anchor='middle' fill='%23f5a623' font-weight='bold'%3ESK%3C/text%3E%3C/svg%3E" />
 </head>
 <body>
-  <!-- ── Page Transition Overlay ── -->
-  <div id="pageTransition" class="page-transition">
-    <div class="pt-bar pt-bar-1"></div>
-    <div class="pt-bar pt-bar-2"></div>
-    <div class="pt-bar pt-bar-3"></div>
-  </div>
+  <div id="scanlines"></div>
+  <div id="cursor"></div>
 
-  <!-- ==================== NAVBAR ==================== -->
   <nav id="navbar" class="navbar">
     <div class="nav-container">
-      <a href="#home" class="nav-logo" id="navLogo">
-        <span class="logo-icon"><i class="ri-brain-line"></i></span>
-        <span class="logo-text">SK<span class="logo-dot">.</span><span class="logo-sub">dev</span></span>
-      </a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
-        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
-        <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
-        <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
-        <li><a href="#services" class="nav-link" data-section="services">Services</a></li>
-        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
-      </ul>
-      <a href="#contact" class="nav-cta">Hire Me</a>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-brand">
+        <span class="prompt">shubham@</span><span class="host">portfolio</span><span class="dollarsign">:~$</span>
+      </div>
+      <div class="nav-menu">
+        <a href="#home" class="nav-link active" data-section="home">HOME</a>
+        <a href="#about" class="nav-link" data-section="about">ABOUT</a>
+        <a href="#skills" class="nav-link" data-section="skills">SKILLS</a>
+        <a href="#projects" class="nav-link" data-section="projects">PROJECTS</a>
+        <a href="#services" class="nav-link" data-section="services">SERVICES</a>
+        <a href="desktop-app.html" class="nav-link accent">AI INTERVIEW ASSISTANT</a>
+        <a href="#contact" class="nav-link" data-section="contact">CONTACT</a>
+      </div>
     </div>
   </nav>
 
-  <main id="appWrapper">
-  <!-- ==================== HERO ==================== -->
-  <section id="home" class="hero-section">
-    <canvas id="hero-canvas"></canvas>
-    <div id="particles-hero"></div>
-    <div class="hero-content">
-      <div class="hero-badge reveal-up">
-        <span class="badge-dot"></span>
-        Available for Freelance & Full-time
-      </div>
-      <h1 class="hero-name reveal-up">
-        <span class="name-line">Shubham</span>
-        <span class="name-line gradient-text">Kumar</span>
-      </h1>
-      <h2 class="hero-headline reveal-up">Data Science &amp; Machine Learning Enthusiast</h2>
-      <p class="hero-sub reveal-up">
-        I build intelligent, data-driven solutions using Machine Learning, Deep Learning,
-        Python, and interactive web apps.
-      </p>
-      <div class="hero-buttons reveal-up">
-        <a href="#contact" class="btn btn-primary">
-          <i class="ri-user-star-line"></i> Hire Me
-        </a>
-        <a href="#projects" class="btn btn-secondary">
-          <i class="ri-code-box-line"></i> View Projects
-        </a>
-        <a href="#services" class="btn btn-ghost">
-          <i class="ri-layout-grid-line"></i> Services
-        </a>
-      </div>
-      <div class="hero-stats reveal-up">
-        <div class="stat-item">
-          <span class="stat-num" data-target="21">0</span>
-          <span class="stat-label">Skills Mastered</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-num" data-target="65">0</span>
-          <span class="stat-label">% Model Accuracy</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-num" data-target="8">0</span>
-          <span class="stat-label">Services Offered</span>
-        </div>
-      </div>
-    </div>
-    <div class="scroll-indicator">
-      <div class="scroll-mouse">
-        <div class="scroll-wheel"></div>
-      </div>
-      <span>Scroll to explore</span>
-    </div>
-  </section>
-
-  <!-- ==================== ABOUT ==================== -->
-  <section id="about" class="section about-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">About Me</span>
-        <h2 class="section-title">Who <span class="gradient-text">Am I?</span></h2>
-      </div>
-      <div class="about-grid">
-        <div class="about-visual">
-          <div class="about-sphere-wrap">
-            <canvas id="about-canvas"></canvas>
-            <div class="about-ring ring-1"></div>
-            <div class="about-ring ring-2"></div>
-            <div class="about-ring ring-3"></div>
+  <main id="app">
+    <!-- HOME / TERMINAL BOOT -->
+    <section id="home" class="section home">
+      <div class="home-wrap">
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <div class="dot red"></div>
+              <div class="dot yellow"></div>
+              <div class="dot green"></div>
+            </div>
+            <div class="terminal-title">bash — portfolio.sh</div>
           </div>
-          <div class="about-badge-card">
-            <i class="ri-award-line"></i>
-            <span>BCA Final Year<br/><small>IGNOU, Delhi</small></span>
+          <div class="terminal-body">
+            <div class="boot-line" id="bootLine"></div>
+            <div class="boot-output" id="bootOutput"></div>
+            <div class="boot-prompt">shubham@portfolio:~$ <span class="typing" id="typewriter"></span><span class="blink">_</span></div>
           </div>
         </div>
-        <div class="about-content">
-          <p class="about-lead">
-            Hey! I'm <strong class="gradient-text">Shubham Kumar</strong> — a passionate Data Science &amp; Machine Learning enthusiast from Delhi, India.
+        <div class="home-info">
+          <h1 class="home-title">
+            <span class="name">Shubham</span>
+            <span class="name accent">Kumar</span>
+          </h1>
+          <div class="home-role">AI &amp; Machine Learning Engineer</div>
+          <p class="home-desc">
+            Building intelligent, data-driven solutions using Machine Learning,
+            Deep Learning, Python, and interactive AI-powered applications.
           </p>
-          <p class="about-text">
-            I'm a final-year BCA student at <strong>IGNOU</strong>, deeply passionate about Data Science, Machine Learning, Deep Learning, and building real-world AI-powered applications. I enjoy solving complex problems using data, creating accurate predictive models, and deploying interactive applications that drive real impact.
-          </p>
-          <p class="about-text">
-            From exploratory data analysis to deploying production ML models via Streamlit, I bring a full-pipeline mindset. I'm actively seeking opportunities in Data Science, ML Engineering, and AI consulting — as a fresher with a portfolio that speaks for itself.
-          </p>
-          <div class="about-tags">
-            <span class="tag">🎓 BCA @ IGNOU</span>
-            <span class="tag">📍 Delhi, India</span>
-            <span class="tag">🤖 ML Engineer</span>
-            <span class="tag">📊 Data Scientist</span>
-            <span class="tag">💻 Python Developer</span>
-            <span class="tag">🚀 Open to Hire</span>
+          <div class="home-actions">
+            <a href="#projects" class="btn btn-primary">VIEW PROJECTS</a>
+            <a href="#contact" class="btn btn-outline">Contact</a>
           </div>
-          <div class="about-actions">
-            <a href="#contact" class="btn btn-primary"><i class="ri-mail-line"></i> Get In Touch</a>
-            <a href="https://www.linkedin.com/in/shubham-kumar-05s2005/" target="_blank" rel="noopener" class="btn btn-secondary"><i class="ri-linkedin-box-fill"></i> LinkedIn</a>
-            <a href="https://github.com/05Shubham-singh" target="_blank" rel="noopener" class="btn btn-ghost"><i class="ri-github-line"></i> GitHub</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== SKILLS ==================== -->
-  <section id="skills" class="section skills-section">
-    <canvas id="skills-canvas" class="section-bg-canvas"></canvas>
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Technical Arsenal</span>
-        <h2 class="section-title">My <span class="gradient-text">Skills</span></h2>
-        <p class="section-desc">A curated set of tools and technologies I use to build intelligent solutions.</p>
-      </div>
-      <div class="skills-grid" id="skillsGrid"></div>
-    </div>
-  </section>
-
-  <!-- ==================== PROJECTS ==================== -->
-  <section id="projects" class="section projects-section">
-    <canvas id="projects-canvas" class="section-bg-canvas"></canvas>
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">My Work</span>
-        <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
-        <p class="section-desc">End-to-end ML systems built with real data and deployed for real users.</p>
-      </div>
-      <div class="project-showcase">
-        <div class="project-card-main" id="projectCard">
-          <div class="project-glow"></div>
-          <div class="project-header">
-            <div class="project-icon-wrap">
-              <i class="ri-trophy-line"></i>
-            </div>
-            <div class="project-meta">
-              <span class="project-category">Machine Learning · Esports AI</span>
-              <div class="project-status"><span class="status-dot"></span> Live &amp; Deployed</div>
-            </div>
-          </div>
-          <h3 class="project-title">Advanced Valorant Match Winner Prediction System</h3>
-          <p class="project-subtitle">using Machine Learning and Elo-Based Feature Engineering</p>
-          <p class="project-desc">
-            Built an end-to-end esports match prediction system using Machine Learning and advanced feature engineering. Implemented rolling historical statistics, matchup difference features, and Elo rating features to improve prediction accuracy from <strong>57% → 65.5%</strong>. Applied EDA, statistical analysis, Logistic Regression, Random Forest, SVM, XGBoost, KMeans clustering, PCA, Cross Validation, and GridSearchCV. Developed and deployed an interactive Streamlit app for real-time match prediction and probability analysis.
-          </p>
-          <div class="project-tech-tags">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">scikit-learn</span>
-            <span class="tech-tag">XGBoost</span>
-            <span class="tech-tag">Elo Rating</span>
-            <span class="tech-tag">Streamlit</span>
-            <span class="tech-tag">pandas</span>
-            <span class="tech-tag">NumPy</span>
-            <span class="tech-tag">KMeans</span>
-            <span class="tech-tag">PCA</span>
-            <span class="tech-tag">GridSearchCV</span>
-          </div>
-          <div class="project-metrics">
-            <div class="metric">
-              <span class="metric-value gradient-text">65.5%</span>
-              <span class="metric-label">Prediction Accuracy</span>
-            </div>
-            <div class="metric">
-              <span class="metric-value gradient-text">+8.5%</span>
-              <span class="metric-label">Accuracy Gain</span>
-            </div>
-            <div class="metric">
-              <span class="metric-value gradient-text">5+</span>
-              <span class="metric-label">ML Algorithms</span>
-            </div>
-          </div>
-          <div class="project-buttons">
-            <a href="https://valorantwinner-prediction-model-xwnfvyrwdst3kund7dunrp.streamlit.app/" target="_blank" rel="noopener" class="btn btn-primary">
-              <i class="ri-external-link-line"></i> Live App
+          <div class="home-links">
+            <a href="desktop-app.html" class="btn btn-primary home-buy-btn">
+              <i class="ri-shopping-cart-line"></i> BUY AI INTERVIEW ASSISTANT
             </a>
-            <a href="https://github.com/05Shubham-singh/Valorant_Winner-prediction-model..git" target="_blank" rel="noopener" class="btn btn-secondary">
-              <i class="ri-github-line"></i> GitHub Repo
+            <a href="https://github.com/05Shubham-kumar" target="_blank" rel="noopener" class="home-link">
+              <i class="ri-github-line"></i> github.com/05Shubham-kumar
             </a>
-          </div>
-        </div>
-        <div class="project-card-main" id="projectCard2">
-          <div class="project-glow"></div>
-          <div class="project-header">
-            <div class="project-icon-wrap">
-              <i class="ri-robot-2-line"></i>
-            </div>
-            <div class="project-meta">
-              <span class="project-category">AI AGENT · CODE REVIEW AI</span>
-              <div class="project-status"><span class="status-dot"></span> Live &amp; Deployed</div>
-            </div>
-          </div>
-          <h3 class="project-title">AI Code Review Agent</h3>
-          <p class="project-subtitle">using Python, Streamlit, AST Parsing, GitPython, and Gemini API</p>
-          <p class="project-desc">
-            Built an end-to-end AI-powered code review system that analyzes public GitHub repositories and generates structured review comments. The application clones a repository using GitPython, detects Python files, parses code with Python AST, extracts functions, classes, and imports, and sends selected code chunks to Gemini for review. It provides feedback with severity, category, confidence score, and verification status — helping developers identify bugs, code quality issues, security concerns, and improvement areas. Deployed as an interactive Streamlit web app for real-time repository review.
-          </p>
-          <div class="project-tech-tags">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Streamlit</span>
-            <span class="tech-tag">GitPython</span>
-            <span class="tech-tag">AST</span>
-            <span class="tech-tag">Gemini API</span>
-            <span class="tech-tag">Static Analysis</span>
-            <span class="tech-tag">AI Agent</span>
-          </div>
-          <div class="project-metrics">
-            <div class="metric">
-              <span class="metric-value gradient-text">AI</span>
-              <span class="metric-label">Powered Code Review</span>
-            </div>
-            <div class="metric">
-              <span class="metric-value gradient-text">Real-time</span>
-              <span class="metric-label">Repo Analysis</span>
-            </div>
-            <div class="metric">
-              <span class="metric-value gradient-text">5+</span>
-              <span class="metric-label">Review Categories</span>
-            </div>
-          </div>
-          <div class="project-buttons">
-            <a href="https://ai-code-review-agent-s.streamlit.app/" target="_blank" rel="noopener" class="btn btn-primary">
-              <i class="ri-external-link-line"></i> Live App
+            <a href="https://www.linkedin.com/in/shubham-kumar-05s2005/" target="_blank" rel="noopener" class="home-link">
+              <i class="ri-linkedin-box-fill"></i> linkedin.com/in/shubham-kumar-05s2005
             </a>
-            <a href="https://github.com/05Shubham-singh/AI-Code-Review-Agent" target="_blank" rel="noopener" class="btn btn-secondary">
-              <i class="ri-github-line"></i> GitHub Repo
+            <a href="mailto:shubham0singh05@gmail.com" class="home-link">
+              <i class="ri-mail-line"></i> shubham0singh05@gmail.com
             </a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ==================== SERVICES ==================== -->
-  <section id="services" class="section services-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">What I Do</span>
-        <h2 class="section-title">My <span class="gradient-text">Services</span></h2>
-        <p class="section-desc">Available for freelance projects, internships, and full-time opportunities.</p>
+    <!-- ABOUT -->
+    <section id="about" class="section about">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">~ ABOUT</span>
+          <h2 class="section-title">system <span class="accent">profile</span></h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-stats">
+            <div class="stat-box">
+              <div class="stat-num" data-target="BCA">BCA</div>
+              <div class="stat-lab">Final Year · IGNOU, Delhi</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num" data-target="Delhi">Delhi, IN</div>
+              <div class="stat-lab">Location</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num" data-target="Open">Open</div>
+              <div class="stat-lab">To Hire</div>
+            </div>
+          </div>
+          <div class="about-bio">
+            <p class="bio-lead">
+              Hey! I'm <strong class="accent">Shubham Kumar</strong> — a passionate Data Science &
+              Machine Learning enthusiast from Delhi, India.
+            </p>
+            <p class="bio-body">
+              I'm a final-year BCA student at <strong>IGNOU</strong>, deeply passionate about Data
+              Science, Machine Learning, Deep Learning, and building real-world AI-powered
+              applications. I enjoy solving complex problems using data, creating accurate
+              predictive models, and deploying interactive apps that drive real impact.
+            </p>
+            <div class="bio-actions">
+              <a href="https://github.com/05Shubham-kumar" target="_blank" rel="noopener" class="btn btn-outline"><i class="ri-github-line"></i> GitHub</a>
+              <a href="https://www.linkedin.com/in/shubham-kumar-05s2005/" target="_blank" rel="noopener" class="btn btn-outline"><i class="ri-linkedin-box-fill"></i> LinkedIn</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="services-grid" id="servicesGrid"></div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ==================== CONTACT ==================== -->
-  <section id="contact" class="section contact-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Get In Touch</span>
-        <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
-        <p class="section-desc">Have a project or want to hire me? Send your query and I will contact you soon.</p>
+    <!-- SKILLS -->
+    <section id="skills" class="section skills">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">~ SKILLS</span>
+          <h2 class="section-title">technical <span class="accent">stack</span></h2>
+        </div>
+        <div class="skills-categories" id="skillsGrid"></div>
       </div>
-      <div class="contact-grid">
-        <div class="contact-info">
-          <div class="contact-card">
-            <h3>Ready to Work Together?</h3>
-            <p>Whether you need a data analysis pipeline, an ML model, a Streamlit dashboard, or just want to discuss a project idea — I'm here and eager to help.</p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section projects">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">~ PROJECTS</span>
+          <h2 class="section-title">deployment <span class="accent">log</span></h2>
+        </div>
+        <div class="projects-list" id="projectsGrid"></div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section services">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">~ SERVICES</span>
+          <h2 class="section-title">available <span class="accent">commands</span></h2>
+        </div>
+        <div class="services-grid" id="servicesGrid"></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact">
+      <div class="container">
+        <div class="contact-shell">
+          <div class="contact-info">
+            <div class="section-head">
+              <span class="section-tag">~ CONTACT</span>
+              <h2 class="section-title">establish <span class="accent">connection</span></h2>
+            </div>
+            <p class="contact-desc">
+              Have a project or want to hire me? Send your query and I'll get back to you soon.
+            </p>
             <div class="contact-links">
               <a href="https://www.linkedin.com/in/shubham-kumar-05s2005/" target="_blank" rel="noopener" class="contact-link linkedin">
                 <i class="ri-linkedin-box-fill"></i>
@@ -330,11 +186,11 @@
                   <span class="link-val">shubham-kumar-05s2005</span>
                 </div>
               </a>
-              <a href="https://github.com/05Shubham-singh" target="_blank" rel="noopener" class="contact-link github">
+              <a href="https://github.com/05Shubham-kumar" target="_blank" rel="noopener" class="contact-link github">
                 <i class="ri-github-fill"></i>
                 <div>
                   <span class="link-label">GitHub</span>
-                  <span class="link-val">05Shubham-singh</span>
+                  <span class="link-val">05Shubham-kumar</span>
                 </div>
               </a>
               <a href="mailto:shubham0singh05@gmail.com" class="contact-link email">
@@ -345,71 +201,71 @@
                 </div>
               </a>
             </div>
-            <div class="availability-badge">
-              <span class="avail-dot"></span>
-              Currently available for new projects
-            </div>
           </div>
-        </div>
-        <div class="contact-form-wrap">
-          <div class="form-header">
-            <i class="ri-send-plane-2-line"></i>
-            <h3>Send Me a Message</h3>
-          </div>
-          <div class="google-form-container">
-            <div class="form-theme-wrap">
-              <iframe
-                id="contactForm"
-                src="https://docs.google.com/forms/d/e/1FAIpQLSeSwGEyQ0KvJGkrBdGv14RGyB11XtNp3__R9iZH6EsD6B_ccA/viewform?embedded=true"
-                width="100%"
-                height="620"
-                frameborder="0"
-                marginheight="0"
-                marginwidth="0"
-                title="Contact Form">
-                Loading…
-              </iframe>
+          <div class="contact-form-wrap">
+            <div class="form-terminal">
+              <div class="form-header">
+                <span class="form-title">send_message.sh</span>
+                <span class="form-status">● ready</span>
+              </div>
+              <form action="https://formspree.io/f/xeaagbbd" method="POST" class="contact-form" id="contactForm">
+                <div class="form-field">
+                  <label>USERNAME</label>
+                  <input type="text" name="name" placeholder="enter username" required />
+                </div>
+                <div class="form-field">
+                  <label>EMAIL ADDRESS</label>
+                  <input type="email" name="email" placeholder="user@domain.com" required />
+                </div>
+                <div class="form-field">
+                  <label>SUBJECT</label>
+                  <input type="text" name="subject" placeholder="project inquiry" required />
+                </div>
+                <div class="form-field">
+                  <label>MESSAGE PAYLOAD</label>
+                  <textarea name="message" rows="5" placeholder="type your message here..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary form-btn">
+                  <span>SEND TRANSMISSION</span>
+                </button>
+              </form>
+              <div class="form-note" id="formNote"></div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- ==================== FOOTER ==================== -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-top">
-        <a href="#home" class="footer-logo" id="footerLogo">
-          <span class="logo-icon"><i class="ri-brain-line"></i></span>
-          <span class="logo-text">SK<span class="logo-dot">.</span><span class="logo-sub">dev</span></span>
-        </a>
-        <div class="footer-nav">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#services">Services</a>
-          <a href="#contact">Contact</a>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="prompt">shubham@</span><span class="host">portfolio</span><span class="dollarsign">:~$</span>
+        </div>
+        <div class="footer-links">
+          <a href="#home">HOME</a>
+          <a href="#about">ABOUT</a>
+          <a href="#skills">SKILLS</a>
+          <a href="#projects">PROJECTS</a>
+          <a href="#services">SERVICES</a>
+          <a href="#contact">CONTACT</a>
         </div>
         <div class="footer-social">
+          <a href="https://github.com/05Shubham-kumar" target="_blank" rel="noopener" aria-label="GitHub"><i class="ri-github-fill"></i></a>
           <a href="https://www.linkedin.com/in/shubham-kumar-05s2005/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ri-linkedin-box-fill"></i></a>
-          <a href="https://github.com/05Shubham-singh" target="_blank" rel="noopener" aria-label="GitHub"><i class="ri-github-fill"></i></a>
           <a href="mailto:shubham0singh05@gmail.com" aria-label="Email"><i class="ri-mail-fill"></i></a>
         </div>
       </div>
       <div class="footer-divider"></div>
       <div class="footer-bottom">
-        <p>&copy; 2025 <span class="gradient-text">Shubham Kumar</span>. All rights reserved.</p>
-        <p class="footer-tagline">Built with <span class="gradient-text">❤</span> and lots of Python</p>
+        <p>&copy; <span id="year"></span> <span class="accent">Shubham Kumar</span>. All rights reserved.</p>
+        <p class="footer-tagline">System operational. Built with Python.</p>
       </div>
     </div>
   </footer>
-  </main>
 
-  <!-- Scripts -->
-  <script src="data.js"></script>
-  <script src="three-scene.js"></script>
+  <script src="data.js?v=2"></script>
   <script src="main.js"></script>
 </body>
 </html>
